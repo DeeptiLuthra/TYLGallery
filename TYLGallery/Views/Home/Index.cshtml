@@ -1,0 +1,28 @@
+﻿@using TYLGallery.Common
+
+@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Heading = "Gallery";
+}
+
+@section scripts{
+    @Scripts.Render("~/Scripts/TYLIndex.js")
+}
+
+
+<div data-ng-controller="IndexController">
+
+    <h4> Please click the button below to get next image </h4>
+    <button class="btn-primary btn " value="Get Image" ng-click="GetImage(@Session[ApplicationConstants.Keys.UserId])">Get Image</button>
+    <div ng-show="showMsg" ng-class="msgClass" class="h4">
+        <div>{{ textMessage }}</div>
+    </div>
+    <div ng-show="isVisible">
+        <img ng-src="{{imageSrc}}" height="320" width="480" />
+        <div ng-show="areFeedbackOptionsVisible">
+            <button class="btn btn-xs" type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Like.ToString()')">Like</button>
+            <button class="btn btn-xs " type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Dislike.ToString()')">Dislike</button>
+        </div>
+    </div>
+
+</div>

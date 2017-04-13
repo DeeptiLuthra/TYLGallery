@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    ViewBag.Heading = "Upload Images";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/ngUpload")
+    @Scripts.Render("~/Scripts/TYLUpload.js")
+}
+
+<div data-ng-controller="UploadController">
+    <input type="file" accept="image/*" ngf-select ng-model="file" /><br />
+    <ul>
+        <li>
+            Name: <span>{{file.name}}</span><br />
+        </li>
+        <li>
+            <button ng-click="UploadFile(file)">Upload</button>
+        </li>
+    </ul>
+</div>

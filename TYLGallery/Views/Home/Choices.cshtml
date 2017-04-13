@@ -1,0 +1,38 @@
+﻿@using TYLGallery.Common
+
+@{
+    ViewBag.Title = "Choices";
+    ViewBag.Heading = "My Choices";
+}
+
+@section scripts{
+    @Scripts.Render("~/Scripts/TylChoices.js");
+}
+
+<div ng-controller="ChoicesController" ng-init="init(@Session[ApplicationConstants.Keys.UserId])">
+    <div>
+        <table class="table table-striped">
+            <thead style="font-weight: bold; font-size:14px">
+                <tr>
+                    <td>
+                        Image
+                    </td>
+                    <td>
+                        Your choice
+                    </td>
+                </tr>
+            </thead>
+            <tr ng-repeat="choice in choices">
+                <td>
+                    <img ng-src="{{ choice.Image.ImageData }}" height="120" width="180" />
+                </td>
+                <td>
+                    <span class="glyphicon" ng-class="getIconClass(choice.Feedback)">
+                        {{ choice.Feedback }}
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
