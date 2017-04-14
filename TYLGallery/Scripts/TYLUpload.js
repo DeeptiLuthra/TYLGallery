@@ -3,9 +3,14 @@ app.requires = ["ngFileUpload"];
 app.controller("UploadController",
     ["$scope", "$http", "$q", "AppNgConstants", "Upload", function ($scope, $http, $q, appNgConstants, upload) {
         $scope.messageClass = "";
-            $scope.textMessage = "";
+        $scope.textMessage = "";
+        
         $scope.isUploading = false;
         $scope.file = null;
+
+            $scope.resetFile = function() {
+                $scope.textMessage = "";
+            };
 
         $scope.UploadFile = function (file) {
             $scope.isUploading = true;

@@ -25,7 +25,7 @@ mod.controller('ChoicesController',
                 $('#ChoicesDiv').prepend(spinner.el);
                 $http.get(url + userId)
                     .then(function (response) {
-                        if (response.data == null) {
+                        if (response.data.length === 0) {
                             $scope.showMsg = true;
                             $scope.textMsg = "You have not made any choices yet!";
                             spinner.stop();

@@ -13,7 +13,9 @@
     <div id="ChoicesDiv">
     </div>
     <div>
-        <table class="table table-striped" ng-cloak>
+        <div ng-bind="textMsg" ng-show="showMsg" class="bg-danger"></div>
+
+        <table class="table table-striped" ng-cloak ng-show="choices.length !== 0">
             <thead>
             <tr>
                 <th>

@@ -10,14 +10,14 @@
 }
 
 <div id="uploadDiv" data-ng-controller="UploadController">
-    <input type="file" accept="image/*" ngf-select ng-model="file" /><br />
-    <ul>
-        <li>
-            Name: <span ng-bind="file.name"></span><br />
-        </li>
-        <li>
-            <button ng-click="UploadFile(file)" ng-hide="isUploading">Upload</button>
-            <label ng-bind="textMessage" ng-class="messageClass"></label>
-        </li>
-    </ul>
+    <input type="file" accept="image/*" ngf-select ng-model="file" ng-click="resetFile()"/><br />
+    
+    <div class="row">
+        Name: <span ng-bind="file.name"></span><br />
+    </div>
+    <div class="row">
+        <button ng-click="UploadFile(file)" ng-hide="isUploading">Upload</button>
+        <label ng-bind="textMessage" ng-class="messageClass"></label>
+    </div>
+    
 </div>
