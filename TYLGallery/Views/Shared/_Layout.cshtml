@@ -37,13 +37,13 @@
         </div>
     </div>
     <div class="container body-content">
-        <div class="page-header">
+        <div class="h1">
             @ViewBag.Heading
         </div>
         @ViewBag.Message
         @RenderBody()
     </div>
-    <div>
+    <div class="container">
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - TYL Gallery</p>
@@ -54,7 +54,7 @@
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/TYLMain.js")
-
+    @Scripts.Render("~/Scripts/spin.min.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -9,14 +9,15 @@
     @Scripts.Render("~/Scripts/TYLUpload.js")
 }
 
-<div data-ng-controller="UploadController">
+<div id="uploadDiv" data-ng-controller="UploadController">
     <input type="file" accept="image/*" ngf-select ng-model="file" /><br />
     <ul>
         <li>
-            Name: <span>{{file.name}}</span><br />
+            Name: <span ng-bind="file.name"></span><br />
         </li>
         <li>
-            <button ng-click="UploadFile(file)">Upload</button>
+            <button ng-click="UploadFile(file)" ng-hide="isUploading">Upload</button>
+            <label ng-bind="textMessage" ng-class="messageClass"></label>
         </li>
     </ul>
 </div>

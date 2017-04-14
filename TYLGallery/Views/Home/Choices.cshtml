@@ -10,26 +10,26 @@
 }
 
 <div ng-controller="ChoicesController" ng-init="init(@Session[ApplicationConstants.Keys.UserId])">
+    <div id="ChoicesDiv">
+    </div>
     <div>
-        <table class="table table-striped">
-            <thead style="font-weight: bold; font-size:14px">
-                <tr>
-                    <td>
-                        Image
-                    </td>
-                    <td>
-                        Your choice
-                    </td>
-                </tr>
+        <table class="table table-striped" ng-cloak>
+            <thead>
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Your choice
+                </th>
+            </tr>
             </thead>
             <tr ng-repeat="choice in choices">
                 <td>
-                    <img ng-src="{{ choice.Image.ImageData }}" height="120" width="180" />
+                    <img ng-src="{{choice.Image.ImageData}}" class="img-responsive" style="max-height: 140px;" ng-cloak/>
                 </td>
-                <td>
-                    <span class="glyphicon" ng-class="getIconClass(choice.Feedback)">
-                        {{ choice.Feedback }}
-                    </span>
+                <td ng-cloak>
+                    <span ng-class="getTextClass(choice.Feedback)" style="font-weight: bold;"><span class="glyphicon" ng-class="getIconClass(choice.Feedback)" ng-cloak></span> {{choice.Feedback}}</span>
                 </td>
             </tr>
         </table>

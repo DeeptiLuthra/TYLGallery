@@ -15,3 +15,34 @@ select,
 textarea {
     max-width: 280px;
 }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.extra-top-padding {
+    padding-top: 10px;
+}
+
+@media (max-width: 400px) {
+    .responsive-button {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+}
+@media (min-width: 401px) {
+    .responsive-button {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+    .responsive-main-button {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 6px;
+    }
+}

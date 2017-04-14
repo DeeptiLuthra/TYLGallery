@@ -11,18 +11,18 @@
 
 
 <div data-ng-controller="IndexController">
-
+    <div id="IndexDiv"></div>
     <h4> Please click the button below to get next image </h4>
-    <button class="btn-primary btn " value="Get Image" ng-click="GetImage(@Session[ApplicationConstants.Keys.UserId])">Get Image</button>
-    <div ng-show="showMsg" ng-class="msgClass" class="h4">
-        <div>{{ textMessage }}</div>
+    <button class="btn-primary btn responsive-button responsive-main-button" value="Get Image" ng-click="GetImage(@Session[ApplicationConstants.Keys.UserId])">Get Image</button>
+    <div ng-show="showMsg" ng-class="msgClass" class="h4" ng-cloak>
+        <div ng-bind="textMessage"></div>
     </div>
     <div ng-show="isVisible">
-        <img ng-src="{{imageSrc}}" height="320" width="480" />
-        <div ng-show="areFeedbackOptionsVisible">
-            <button class="btn btn-xs" type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Like.ToString()')">Like</button>
-            <button class="btn btn-xs " type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Dislike.ToString()')">Dislike</button>
+        <div ng-show="areFeedbackOptionsVisible" ng-cloak class="row text-center extra-top-padding">
+            <span class="col-sm-1 col-sm-offset-5"><button class="btn responsive-button btn-success" type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Like.ToString()')"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button></span>
+            <span class="col-sm-1"><button class="btn responsive-button btn-danger" type="button" ng-click="SaveAction(@(Session[ApplicationConstants.Keys.UserId]??0),'@Feedback.Dislike.ToString()')"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button></span>
         </div>
+        <img ng-src="{{imageSrc}}" class="img-responsive center-block extra-top-padding" ng-cloak/>
     </div>
 
 </div>

@@ -13,6 +13,8 @@ mod.controller('IndexController',
             $scope.areFeedbackOptionsVisible = false;
 
             $scope.GetImage = function (userId) {
+                var spinner = new Spinner().spin();
+                $('#IndexDiv').prepend(spinner.el);
                 var url = userId == null ? appNgConstants.ShowImageUrl : appNgConstants.ShowImageUrl + "/" + userId;
                 $scope.imageSrc = "";
                 $scope.textMessage = "";
@@ -33,6 +35,10 @@ mod.controller('IndexController',
 
                         $scope.imageSrc = response.data.ImageData;
                         $scope.imageId = response.data.Id;
+                            spinner.stop();
+                    },
+                    function() {
+                        spinner.stop();
                     });
 
 
