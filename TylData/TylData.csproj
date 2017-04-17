@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\TYLGalleryContext.cs" />
-    <Compile Include="Data\TylGalleryMigrationConfiguration.cs" />
+    <Compile Include="Data\TylGalleryDataContextInitializer.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Data\ITylGalleryRepository.cs" />
     <Compile Include="Data\TylGalleryRepository.cs" />

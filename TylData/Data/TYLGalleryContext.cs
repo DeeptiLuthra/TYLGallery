@@ -11,7 +11,7 @@ namespace TylData.Data
             this.Configuration.ProxyCreationEnabled = false;
 
             Database.SetInitializer(
-                new MigrateDatabaseToLatestVersion<TYLGalleryContext, TylGalleryMigrationConfiguration>());
+                new TylGalleryDataContextInitializer());
 
         }
 

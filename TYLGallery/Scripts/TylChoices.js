@@ -1,12 +1,10 @@
 ﻿//TylChoices.js
 
 var mod = angular.module('TylMain');
-mod.requires = [];
-
 
 mod.controller('ChoicesController',
     [
-        "$scope", "$http", "AppNgConstants", function ($scope, $http, appNgConstants) {
+        "$scope", "$http", "AppNgConstants", "UserCookieService", function ($scope, $http, appNgConstants, UserCookieService) {
             $scope.showMsg = false;
             $scope.textMsg = "";
             $scope.choices = [];
@@ -20,7 +18,8 @@ mod.controller('ChoicesController',
                 return feedback === "Like" ? "text-primary" : "text-danger";
             }
 
-            $scope.init = function (userId) {
+            $scope.init = function () {
+                var userId = UserCookieService.getUserIdFromCookie();
                 var spinner = new Spinner().spin();
                 $('#ChoicesDiv').prepend(spinner.el);
                 $http.get(url + userId)

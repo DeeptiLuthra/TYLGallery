@@ -23,14 +23,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (Session[ApplicationConstants.Keys.UserId] != null)
-                    {
-                        <li>@Html.ActionLink("My Choices", "Choices", "Home")</li>
-                    }
-                    @if (User.Identity.IsAuthenticated && User.IsInRole(ApplicationConstants.Keys.AdminRole))
-                    {
-                        <li>@Html.ActionLink("Upload", "Upload", "Home")</li>
-                    }
+                    
+
+                        @if (!string.IsNullOrEmpty(Html.Action("GetUserIdFromCookie", "Home").ToString()))
+                        {
+                            <li>@Html.ActionLink("My Choices", "Choices", "Home")</li>
+                        }
+                    
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(ApplicationConstants.Keys.AdminRole))
+                         {
+                             <li>@Html.ActionLink("Upload", "Upload", "Home")</li>
+                         }
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

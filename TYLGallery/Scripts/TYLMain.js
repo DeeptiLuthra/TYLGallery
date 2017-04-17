@@ -1,5 +1,5 @@
 ﻿"use strict";
-angular.module("TylMain", ["ngFileUpload"])
+angular.module("TylMain", ["ngCookies"])
     .constant("AppNgConstants",
     {
         "ChoicesApiUrl": "/api/ShowPreferences/",
@@ -7,5 +7,26 @@ angular.module("TylMain", ["ngFileUpload"])
         "ShowImageUrl": "/api/ShowImage",
         "CookieKey": "UserCookieKey"
     })
-    .constant("ExceptionCode", "AlreadySubmitted");
+    .constant("ExceptionCode", "AlreadySubmitted")
+    .factory('UserCookieService', ['$cookies', 'AppNgConstants', function ($cookies, appNgConstants) {
+        var factory = {};
+
+           factory.getUserIdFromCookie = function() {
+                var userCookie = $cookies.get(appNgConstants.CookieKey);
+
+                return userCookie != null ? parseInt(userCookie) : null;
+            };
+            factory.saveUserDetailsToCookie = function(userId) {
+                var date = new Date();
+                date.setFullYear(date.getFullYear() + 1);
+
+                $cookies.put(appNgConstants.CookieKey,
+                    userId,
+                    {
+                        expires: date
+                    });
+           };
+            return factory;
+        }])
+    ;
 

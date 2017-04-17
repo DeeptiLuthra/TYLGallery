@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Data.Entity.Migrations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
 using System.IO;
 
 namespace TylData.Data
 {
-    public class TylGalleryMigrationConfiguration : DbMigrationsConfiguration<TYLGalleryContext>
+    public class TylGalleryDataContextInitializer : DropCreateDatabaseIfModelChanges<TYLGalleryContext>
     {
-        public TylGalleryMigrationConfiguration()
-        {
-            this.AutomaticMigrationDataLossAllowed = true;
-            this.AutomaticMigrationsEnabled = true;
-        }
-
         protected override void Seed(TYLGalleryContext context)
         {
             base.Seed(context);

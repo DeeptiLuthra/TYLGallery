@@ -5,22 +5,11 @@ namespace TYLGallery.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        public string GetUserIdFromCookie()
         {
-
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            base.OnActionExecuting(filterContext);
-
             var userCookie = Request.Cookies[ApplicationConstants.Keys.UserCookie];
 
-            if (userCookie != null)
-            {
-                Session[ApplicationConstants.Keys.UserId] = userCookie.Value;
-            }
-
+            return userCookie?.Value;
         }
 
         public ActionResult Index()

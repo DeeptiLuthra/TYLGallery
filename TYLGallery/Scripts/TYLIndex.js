@@ -1,21 +1,18 @@
 ﻿var mod = angular.module('TylMain');
-mod.requires = ['ngCookies'];
-
-
 mod.controller('IndexController',
     [
-        "$scope", "$http", "$cookies", "AppNgConstants", "ExceptionCode", function ($scope, $http, $cookies, appNgConstants, ExceptionCode) {
+        "$scope", "$http", "AppNgConstants", "ExceptionCode", 'UserCookieService', function ($scope, $http, appNgConstants, ExceptionCode, UserCookieService) {
             $scope.imageSrc = "";
             $scope.isVisible = false;
             $scope.showMsg = false;
             $scope.textMessage = "";
             $scope.msgClass = "";
             $scope.areFeedbackOptionsVisible = false;
-
-            $scope.GetImage = function (userId) {
+            $scope.UserId = UserCookieService.getUserIdFromCookie();
+            $scope.GetImage = function () {
                 var spinner = new Spinner().spin();
                 $('#IndexDiv').prepend(spinner.el);
-                var url = userId == null ? appNgConstants.ShowImageUrl : appNgConstants.ShowImageUrl + "/" + userId;
+                var url = $scope.UserId == null ? appNgConstants.ShowImageUrl : appNgConstants.ShowImageUrl + "/" + $scope.UserId;
                 $scope.imageSrc = "";
                 $scope.textMessage = "";
                 $scope.showMsg = false;
@@ -32,9 +29,10 @@ mod.controller('IndexController',
                             $scope.isVisible = true;
                             $scope.showMsg = false;
                         }
-
-                        $scope.imageSrc = response.data.ImageData;
-                        $scope.imageId = response.data.Id;
+                            if (response.data != null) {
+                                $scope.imageSrc = response.data.ImageData;
+                                $scope.imageId = response.data.Id;
+                            }
                             spinner.stop();
                     },
                     function() {
@@ -44,8 +42,8 @@ mod.controller('IndexController',
 
             }
 
-            $scope.SaveAction = function (userId, feedback) {
-                var user = userId == null ? 0 : userId;
+            $scope.SaveAction = function (feedback) {
+                var user = $scope.UserId == null ? 0 : $scope.UserId;
                 var data = {
                     userId: user,
                     imageId: $scope.imageId,
@@ -65,15 +63,9 @@ mod.controller('IndexController',
                         $scope.textMessage = "Feedback received!";
                         $scope.msgClass = "bg-success";
                         $scope.areFeedbackOptionsVisible = false;
-                        var date = new Date();
-                        date.setFullYear(date.getFullYear() + 1);
                         //add userId to cookie
-                        $cookies.put(appNgConstants.CookieKey,
-                            response.data,
-                            {
-                                expires: date
-                            });
-                    },
+                            UserCookieService.saveUserDetailsToCookie(response.data);
+                        },
                     function (response) {
                         $scope.showMsg = true;
                         $scope.msgClass = "bg-danger";
