@@ -13,9 +13,8 @@ namespace TylData.Data
         bool AddPhoto(Image image);
         int AddUserChoice(UserVisitedImage visitor);
 
-        IEnumerable<UserVisitedImage> GetUserVisitedImages(int userId);
+        IEnumerable<UserVisitedImage> GetUserVisitedImages(int userId, int pageNum, int pageSize, bool byPage);
         Image GetImagesById(int? userId);
         int ImageCount { get; }
-
     }
 }

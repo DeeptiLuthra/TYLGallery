@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,10 +14,12 @@ namespace TYLGallery.Controllers
     public class ShowImageController : ApiController
     {
         private ITylGalleryRepository _repo;
+        private ILogger _contextLogger;
 
         public ShowImageController(ITylGalleryRepository repo)
         {
             _repo = repo;
+            _contextLogger = Log.Logger.ForContext<ShowImageController>();
         }
 
         private Image GetImage(int? userId)

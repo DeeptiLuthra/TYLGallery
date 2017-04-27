@@ -14,6 +14,11 @@ namespace TYLGallery.Common
             public const string ExceptionCode = "ExceptionCodeKey";
         }
 
+        public class Paging
+        {
+            public const int PageSize = 3;
+        }
+
         public class ExceptionCodes
         {
             public const string AlreadySubmitted = "AlreadySubmitted";

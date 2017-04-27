@@ -3,6 +3,7 @@ angular.module("TylMain", ["ngCookies"])
     .constant("AppNgConstants",
     {
         "ChoicesApiUrl": "/api/ShowPreferences/",
+        "UserRecordCountUrl": "/api/ShowPreferences/UserRecordCount/",
         "UploadApiUrl": "/api/ImageUpload/",
         "ShowImageUrl": "/api/ShowImage",
         "CookieKey": "UserCookieKey"

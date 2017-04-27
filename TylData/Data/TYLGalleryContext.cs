@@ -1,18 +1,23 @@
 ﻿using System.Data.Entity;
 using TylData.Models;
+using Serilog;
+using TYLGallery.Common;
 
 namespace TylData.Data
 {
     public class TYLGalleryContext : DbContext
     {
+        private ILogger _contextLogger;
+
         public TYLGalleryContext() : base("DefaultConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
 
+            _contextLogger = Log.Logger.ForContext<TYLGalleryContext>();
+            _contextLogger.Information("TYLGalleryContext: Connecting to database:{dbConnection}", "DefaultConnection");
             Database.SetInitializer(
-                new TylGalleryDataContextInitializer());
-
+                new MigrateDatabaseToLatestVersion<TYLGalleryContext, TylGalleryDataContextInitializer>());
         }
 
         public DbSet<UserVisitedImage> UserVisitedImages { get; set; }
